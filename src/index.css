@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Paleta "comanda de pedido" — papel + tinta + carimbo */
+  --color-papel: #faf9f6;
+  --color-papel-dobra: #ece8e0;
+  --color-linha: #ddd7ca;
+  --color-tinta: #211f1c;
+  --color-tinta-suave: #5a564d;
+  --color-carimbo: #c4361d;
+  --color-carimbo-escuro: #9c2b16;
+  --color-aberto: #3f6b4a;
+  --color-fechado: #9c2b16;
+
+  --font-ticket: 'Space Mono', ui-monospace, monospace;
+  --font-base: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--font-base);
+}
+
+/* iOS aplica zoom automático ao focar inputs com fonte menor que 16px.
+   Forçamos 16px nos campos reais (não nos rótulos) para evitar isso. */
+input[type='text'],
+input[type='tel'],
+input[type='number'],
+textarea {
+  font-size: 16px;
+}
+
+/* Foco visível consistente com o tema, para navegação por teclado. */
+:focus-visible {
+  outline: 2px solid var(--color-carimbo);
+  outline-offset: 2px;
+}
+
+/* Espaço de segurança para o botão flutuante e rodapés fixos em
+   aparelhos com home indicator (iPhone sem botão físico). */
+.espaco-seguro-inferior {
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+
+/* Borda serrilhada, como o rasgo de uma comanda de papel */
+.borda-serrilhada {
+  --serra-tam: 14px;
+  mask-image: radial-gradient(circle at var(--serra-tam) var(--serra-tam), transparent var(--serra-tam), black calc(var(--serra-tam) + 1px));
+  mask-size: calc(var(--serra-tam) * 2) calc(var(--serra-tam) * 2);
+  mask-position: calc(-1 * var(--serra-tam)) top;
+  mask-repeat: repeat-x;
+}
+
+::-webkit-scrollbar {
+  height: 0px;
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-linha);
+  border-radius: 999px;
+}
