@@ -1,0 +1,20 @@
+export const checkoutInicial = {
+  nome: '',
+  whatsapp: '',
+  tipoPedido: 'entrega',
+  endereco: {
+    cep: '',
+    rua: '',
+    numero: '',
+    complemento: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
+    referencia: '',
+  },
+  mesa: '',
+  formaPagamento: null,
+  precisaTroco: null,
+  trocoPara: '',
+  observacao: '',
+}
