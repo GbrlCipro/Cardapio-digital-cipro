@@ -11,7 +11,7 @@ import { useCardapio } from '../hooks/useCardapio'
 import { useProdutosAdmin } from './hooks/useProdutosAdmin'
 
 export default function AdminApp() {
-  const { carregando: carregandoSessao, autenticado, erroLogin, entrar, sair } = useAuth()
+  const { carregando: carregandoSessao, autenticado, erroLogin, entrar, sair, solicitarRedefinicaoSenha } = useAuth()
   const { categorias, produtos, carregando, erro, recarregar } = useCardapio()
   const { salvarProduto, excluirProduto, alternarCampo } = useProdutosAdmin(recarregar)
 
@@ -27,7 +27,7 @@ export default function AdminApp() {
   if (carregandoSessao) return null
 
   if (!autenticado) {
-    return <LoginScreen onEntrar={entrar} erro={erroLogin} />
+    return <LoginScreen onEntrar={entrar} erro={erroLogin} onSolicitarRedefinicaoSenha={solicitarRedefinicaoSenha} />
   }
 
   async function handleSalvar(produto, idOriginal) {

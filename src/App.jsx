@@ -7,6 +7,7 @@ import CarrinhoBotaoFlutuante from './components/Carrinho/CarrinhoBotaoFlutuante
 import CarrinhoDrawer from './components/Carrinho/CarrinhoDrawer'
 import CheckoutDrawer from './components/Checkout/CheckoutDrawer'
 import RevisaoDrawer from './components/Revisao/RevisaoDrawer'
+import PedidoEnviadoDrawer from './components/Revisao/PedidoEnviadoDrawer'
 import CardapioCarregando from './components/CardapioCarregando'
 import CardapioErro from './components/CardapioErro'
 import Toast from './components/Toast'
@@ -27,6 +28,7 @@ function AppConteudo() {
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
   const [checkoutAberto, setCheckoutAberto] = useState(false)
   const [revisaoAberta, setRevisaoAberta] = useState(false)
+  const [pedidoEnviadoLink, setPedidoEnviadoLink] = useState(null)
   const [dadosCheckout, setDadosCheckout] = useLocalStorageState('cardapio.checkout.v1', checkoutInicial)
   const [mensagemToast, setMensagemToast] = useState(null)
 
@@ -193,11 +195,30 @@ function AppConteudo() {
           onEnviar={() => {
             if (!aberta && loja.bloquearPedidoLojaFechada) return
             const mensagem = gerarMensagemPedido({ itens, subtotal, dadosCheckout })
-            window.open(gerarLinkWhatsapp(mensagem), '_blank', 'noopener,noreferrer')
+            const link = gerarLinkWhatsapp(mensagem)
+            window.open(link, '_blank', 'noopener,noreferrer')
+            // Importante: NÃO limpamos o carrinho aqui. Abrir a aba do
+            // WhatsApp não é garantia de que o cliente realmente enviou
+            // a mensagem — se ele fechar sem enviar, o pedido não pode
+            // sumir. A limpeza só acontece quando ele confirma abaixo.
             setRevisaoAberta(false)
+            setPedidoEnviadoLink(link)
+          }}
+        />
+      )}
+
+      {pedidoEnviadoLink && (
+        <PedidoEnviadoDrawer
+          link={pedidoEnviadoLink}
+          onVoltar={() => {
+            setPedidoEnviadoLink(null)
+            setRevisaoAberta(true)
+          }}
+          onConcluir={() => {
+            setPedidoEnviadoLink(null)
             limparCarrinho()
             setDadosCheckout(checkoutInicial)
-            setMensagemToast('✓ Pedido enviado! Continue no WhatsApp.')
+            setMensagemToast('✓ Pedido concluído. Bom apetite!')
           }}
         />
       )}

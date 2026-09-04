@@ -22,6 +22,13 @@ export function useAuth() {
     return !error
   }
 
+  async function solicitarRedefinicaoSenha(email) {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/admin/redefinir-senha`,
+    })
+    return { erro: error?.message ?? null }
+  }
+
   async function sair() {
     await supabase.auth.signOut()
   }
@@ -33,5 +40,6 @@ export function useAuth() {
     erroLogin,
     entrar,
     sair,
+    solicitarRedefinicaoSenha,
   }
 }
