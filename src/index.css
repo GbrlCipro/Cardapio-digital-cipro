@@ -46,7 +46,7 @@ textarea {
 /* Espaço de segurança para o botão flutuante e rodapés fixos em
    aparelhos com home indicator (iPhone sem botão físico). */
 .espaco-seguro-inferior {
-  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  padding-bottom: max(env(safe-area-inset-bottom), 10px);
 }
 
 /* Borda serrilhada, como o rasgo de uma comanda de papel */

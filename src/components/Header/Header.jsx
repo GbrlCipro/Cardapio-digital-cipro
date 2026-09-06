@@ -7,10 +7,13 @@ export default function Header({ aberta }) {
   return (
     <header className="relative bg-tinta text-papel">
       {loja.banner && (
-        <div
-          className="h-32 w-full bg-cover bg-center opacity-40 sm:h-40"
-          style={{ backgroundImage: `url(${loja.banner})` }}
-        />
+        <div className="w-full bg-tinta flex justify-center overflow-hidden">
+          <img
+            src={loja.banner}
+            alt="Banner da Loja"
+            className="w-full h-32 sm:h-40 object-contain"
+          />
+        </div>
       )}
 
       <div className="mx-auto max-w-3xl px-5 pb-5 pt-6 sm:px-8">

@@ -6,10 +6,10 @@
 // ============================================================
 
 const loja = {
-  nome: 'Estação Sabor',
-  descricaoCurta: 'Pedidos online',
-  logo: '/logo.svg',
-  banner: null, // ex: '/banner.jpg' — ou null para não exibir
+  nome: 'Tanacomanda',
+  descricaoCurta: 'Cardápio Digital',
+  logo: '/tanacomanda-icone.svg',
+  banner: '/tanacomanda-banner-1360x160.jpg', // ex: '/banner.jpg' — ou null para não exibir
 
   // Número que recebe os pedidos no formato internacional, só dígitos.
   whatsapp: '5564993173254',
@@ -24,7 +24,7 @@ const loja = {
 
   // Horários por dia da semana. Use null para "fechado o dia todo".
   horarios: {
-    domingo: null,
+    domingo: { abre: '00:00', fecha: '23:59' },
     segunda: { abre: '00:00', fecha: '23:59' },
     terca: { abre: '00:00', fecha: '23:59' },
     quarta: { abre: '00:00', fecha: '23:59' },
