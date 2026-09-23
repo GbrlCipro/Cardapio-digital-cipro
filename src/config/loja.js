@@ -6,7 +6,7 @@
 // ============================================================
 
 const loja = {
-  nome: 'Tanacomanda',
+  nome: 'Rayane Linda',
   descricaoCurta: 'Cardápio Digital',
   logo: '/tanacomanda-icone.svg',
   banner: '/tanacomanda-banner-1360x160.jpg', // ex: '/banner.jpg' — ou null para não exibir
